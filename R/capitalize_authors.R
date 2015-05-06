@@ -6,18 +6,13 @@
 #' @param ref A \code{\link{BibEntry}} object.
 #' @export
 #' @return A BibEntry object with author names in Title Case.
-#' @examples \dontrun{
-#'
-#'}
-
+#' @author F. Rodriguez-Sanchez
 
 capitalize_authors <- function(ref){
 
-  authors <- strsplit(paste(tolower(ref$author)), split = " ")
+  authors <- tools::toTitleCase(tolower(ref$author))
 
-  au <- lapply(authors, Hmisc::capitalize)
-
-  ref$author <- paste(lapply(au, paste, collapse = " "), collapse = " and ")
+  ref$author <- paste(ref$author, collapse = " and ")
 
   ref
 }
