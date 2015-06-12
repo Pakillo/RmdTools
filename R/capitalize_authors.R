@@ -3,18 +3,23 @@
 #' This function capitalizes author names (given and family names), while setting all other characters to lower case.
 #'
 #' @importFrom tools toTitleCase
-#' @param ref A \code{\link{BibEntry}} object.
+#' @param ref A \code{\link[RefManageR]{BibEntry}} object.
 #' @export
 #' @return A BibEntry object with author names in Title Case.
 #' @author F. Rodriguez-Sanchez
 
 capitalize_authors <- function(ref){
 
-  authors <- tools::toTitleCase(tolower(ref$author))
+  for (i in 1:length(ref)){
 
-  ref$author <- paste(ref$author, collapse = " and ")
+    authors <- tools::toTitleCase(tolower(ref[[i]]$author))
 
-  ref
+    ref[[i]]$author <- paste(authors, collapse = " and ")
+
+  }
+
+  return(ref)
+
 }
 
 
