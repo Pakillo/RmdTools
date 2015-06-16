@@ -12,13 +12,13 @@
 #' @return a list of citation information, invisibly
 #' @import RefManageR
 #' @examples
-#'  write_bibtex_windows(c(citation("knitr"),
+#'  write_bibtex_utf8(c(citation("knitr"),
 #'                 citation("knitcitations"),
 #'                 citation("RCurl")))
 #' @export
 #' @author Carl Boettiger, slightly modified by F. Rodriguez-Sanchez.
 
-write_bibtex_windows <- function(entry = NULL,
+write_bibtex_utf8 <- function(entry = NULL,
                          file = "references.bib",
                          append = FALSE,
                          ...){
