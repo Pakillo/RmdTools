@@ -2,6 +2,7 @@
 
 export(BibEntry_to_UTF8)
 export(capitalize_authors)
+export(capitalize_refs)
 export(capitalize_titles)
 export(md_toc)
 export(write_bibtex_windows)
