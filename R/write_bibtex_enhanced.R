@@ -1,6 +1,6 @@
-#' Encode authors names in UTF-8 and write BibTeX file.
+#' Fix references and write BibTeX file.
 #'
-#' Modified from \code{\link[knitcitations]{write.bibtex}} to overcome problems with non-UTF-8 encoding in Windows systems.
+#' An enhanced version of \code{\link[knitcitations]{write.bibtex}} aimed at fixing capitalization styles of references, and overcoming problems with non-UTF-8 encoding (particularly in Windows systems).
 #'
 #' @param entry a 'bibentry' object or list of bibentry objects.
 #'        If NULL, writes all that have currently been cited.
@@ -8,6 +8,8 @@
 #'  added. if 'NULL' will use stdout.
 #' @param append a logical indicating that bibtex entries be added the the
 #'  file.  If FALSE (default), the file is overwritten.
+#' @param utf8 Logical. If TRUE, convert author names to UTF-8 encoding.
+#' @param capitalize Logical. If TRUE, fix capitalization of references (see \code{\link{capitalize_refs}}).
 #' @param ... additional arguments to WriteBib
 #' @return a list of citation information, invisibly
 #' @import RefManageR
@@ -16,11 +18,14 @@
 #'                 citation("knitcitations"),
 #'                 citation("RCurl")))
 #' @export
-#' @author Carl Boettiger, slightly modified by F. Rodriguez-Sanchez.
+#' @author Carl Boettiger, modified by F. Rodriguez-Sanchez.
+#' @seealso \code{\link{capitalize_refs}} and \code{\link{BibEntry_to_UTF8}}.
 
-write_bibtex_utf8 <- function(entry = NULL,
+write_bibtex_enhanced <- function(entry = NULL,
                          file = "references.bib",
                          append = FALSE,
+                         utf8 = FALSE,
+                         capitalize = TRUE,
                          ...){
 
   if(is.null(entry)){
@@ -34,9 +39,15 @@ write_bibtex_utf8 <- function(entry = NULL,
 
   }
 
-  entry.utf8 <- BibEntry_to_UTF8(entry)
+  if (utf8){
+    entry <- BibEntry_to_UTF8(entry)
+  }
 
-  WriteBib(entry.utf8, file=file, append=append, ...)
+  if (capitalize){
+    entry <- capitalize_refs(entry)
+  }
+
+  WriteBib(entry, file=file, append=append, ...)
 }
 
 
