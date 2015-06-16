@@ -1,6 +1,6 @@
 Package: RmdTools
 Title: Helpful tools to work with Rmarkdown.
-Version: 0.4.2
+Version: 0.4.5
 Authors@R: person("Francisco", "Rodriguez-Sanchez", , "f.rodriguez.sanc@gmail.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph)
 Depends: R (>= 3.2.0)

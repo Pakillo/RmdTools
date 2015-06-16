@@ -26,6 +26,15 @@ BibEntry_to_UTF8 <- function(refs){
     refs[[i]]$author <- iconv(authors, to = "UTF-8")
   }
 
+  for (i in 1:length(refs)){
+    refs[[i]]$title <- iconv(refs[[i]]$title, to = "UTF-8")
+  }
+
+
+  for (i in 1:length(refs)){
+    refs[[i]]$journal <- iconv(refs[[i]]$journal, to = "UTF-8")
+  }
+
   refs
 
 }

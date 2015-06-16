@@ -13,6 +13,7 @@
 #' @param ... additional arguments to WriteBib
 #' @return a list of citation information, invisibly
 #' @import RefManageR
+#' @import knitcitations
 #' @examples
 #'  write_bibtex_utf8(c(citation("knitr"),
 #'                 citation("knitcitations"),
@@ -29,7 +30,7 @@ write_bibtex_enhanced <- function(entry = NULL,
                          ...){
 
   if(is.null(entry)){
-    entry <- get_bib()
+    entry <- knitcitations:::get_bib()
 
   } else if(is(entry, "bibentry")){
     entry <- as.BibEntry(entry)
